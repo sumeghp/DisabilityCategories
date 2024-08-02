@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories of Disabilities</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .dialog {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid black;
+            padding: 10px;
+            max-width: 300px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+        .bubble {
+            cursor: pointer;
+        }
+        .bubble-text {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <svg width="800" height="600" viewBox="0 0 800 600">
+        <!-- Connecting lines (now in the background) -->
+        <g id="connecting-lines">
+            <line x1="400" y1="300" x2="200" y2="150" stroke="black" />
+            <line x1="400" y1="300" x2="600" y2="150" stroke="black" />
+            <line x1="400" y1="300" x2="150" y2="400" stroke="black" />
+            <line x1="400" y1="300" x2="650" y2="400" stroke="black" />
+            <line x1="400" y1="300" x2="300" y2="500" stroke="black" />
+            <line x1="400" y1="300" x2="500" y2="500" stroke="black" />
+        </g>
+
+        <g id="central-bubble">
+            <circle cx="400" cy="300" r="80" fill="#FFB347"/>
+            <text x="400" y="300" text-anchor="middle" alignment-baseline="middle" fill="black">
+                <tspan x="400" dy="-10">Categories of</tspan>
+                <tspan x="400" dy="20">Disabilities</tspan>
+            </text>
+        </g>
+        
+        <g id="learning" class="bubble" transform="translate(200, 150)">
+            <circle r="70" fill="#FF6B6B"/>
+            <text class="bubble-text" x="0" y="0" text-anchor="middle" alignment-baseline="middle" fill="black">
+                <tspan x="0" dy="-10">Learning</tspan>
+                <tspan x="0" dy="20">Disabilities</tspan>
+            </text>
+        </g>
+        
+        <g id="sensory" class="bubble" transform="translate(600, 150)">
+            <circle r="70" fill="#4ECDC4"/>
+            <text class="bubble-text" x="0" y="0" text-anchor="middle" alignment-baseline="middle" fill="black">
+                <tspan x="0" dy="-10">Sensory</tspan>
+                <tspan x="0" dy="20">Impairments</tspan>
+            </text>
+        </g>
+        
+        <g id="physical" class="bubble" transform="translate(150, 400)">
+            <circle r="70" fill="#45B7D1"/>
+            <text class="bubble-text" x="0" y="0" text-anchor="middle" alignment-baseline="middle" fill="black">
+                <tspan x="0" dy="-10">Physical</tspan>
+                <tspan x="0" dy="20">Disabilities</tspan>
+            </text>
+        </g>
+        
+        <g id="intellectual" class="bubble" transform="translate(650, 400)">
+            <circle r="70" fill="#FFA07A"/>
+            <text class="bubble-text" x="0" y="0" text-anchor="middle" alignment-baseline="middle" fill="black">
+                <tspan x="0" dy="-10">Intellectual</tspan>
+                <tspan x="0" dy="20">Disabilities</tspan>
+            </text>
+        </g>
+        
+        <g id="asd" class="bubble" transform="translate(300, 500)">
+            <circle r="70" fill="#98D8C8"/>
+            <text class="bubble-text" x="0" y="0" text-anchor="middle" alignment-baseline="middle" fill="black">
+                <tspan x="0" dy="-10">Autism Spectrum</tspan>
+                <tspan x="0" dy="20">Disorders</tspan>
+            </text>
+        </g>
+        
+        <g id="adhd" class="bubble" transform="translate(500, 500)">
+            <circle r="70" fill="#F7EA4A"/>
+            <text class="bubble-text" x="0" y="0" text-anchor="middle" alignment-baseline="middle" fill="black">
+                <tspan x="0">ADHD</tspan>
+            </text>
+        </g>
+    </svg>
+
+    <div id="learning-dialog" class="dialog">
+        <h3>Learning Disabilities</h3>
+        <p>Examples: Dyslexia, Dyscalculia, Dysgraphia</p>
+        <p>Characteristics: Difficulties in reading, writing, math, or information processing</p>
+    </div>
+
+    <div id="sensory-dialog" class="dialog">
+        <h3>Sensory Impairments</h3>
+        <p>Examples: Visual impairment, Hearing impairment</p>
+        <p>Characteristics: Reduced or lack of sensory input affecting learning</p>
+    </div>
+
+    <div id="physical-dialog" class="dialog">
+        <h3>Physical Disabilities</h3>
+        <p>Examples: Cerebral Palsy, Muscular Dystrophy</p>
+        <p>Characteristics: Limitations in mobility or physical functioning</p>
+    </div>
+
+    <div id="intellectual-dialog" class="dialog">
+        <h3>Intellectual Disabilities</h3>
+        <p>Characteristics: Limitations in intellectual functioning and adaptive behavior</p>
+    </div>
+
+    <div id="asd-dialog" class="dialog">
+        <h3>Autism Spectrum Disorders (ASD)</h3>
+        <p>Characteristics: Challenges with social skills, repetitive behaviors, speech and nonverbal communication</p>
+    </div>
+
+    <div id="adhd-dialog" class="dialog">
+        <h3>Attention-Deficit/Hyperactivity Disorder (ADHD)</h3>
+        <p>Characteristics: Difficulty paying attention, controlling impulsive behaviors, or being overly active</p>
+    </div>
+
+    <script>
+        function showDialog(id, event) {
+            var dialog = document.getElementById(id + '-dialog');
+            dialog.style.display = 'block';
+            dialog.style.left = event.pageX + 'px';
+            dialog.style.top = event.pageY + 'px';
+        }
+
+        function hideDialogs() {
+            var dialogs = document.getElementsByClassName('dialog');
+            for (var i = 0; i < dialogs.length; i++) {
+                dialogs[i].style.display = 'none';
+            }
+        }
+
+        var bubbles = document.getElementsByClassName('bubble');
+        for (var i = 0; i < bubbles.length; i++) {
+            bubbles[i].addEventListener('click', function(e) {
+                hideDialogs();
+                showDialog(this.id, e);
+                e.stopPropagation();
+            });
+        }
+
+        document.addEventListener('click', hideDialogs);
+    </script>
+</body>
+</html>
